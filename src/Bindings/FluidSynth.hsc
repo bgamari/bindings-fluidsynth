@@ -11,6 +11,7 @@ module Bindings.FluidSynth where
 #ccall new_fluid_settings , IO (Ptr <fluid_settings_t>)
 #ccall delete_fluid_settings , Ptr <fluid_settings_t> -> IO ()
 #ccall fluid_settings_setstr , Ptr <fluid_settings_t> -> CString -> CString -> IO CInt
+#ccall fluid_settings_setint , Ptr <fluid_settings_t> -> CString -> CInt -> IO CInt
 
 #ccall new_fluid_synth , Ptr <fluid_settings_t> -> IO (Ptr <fluid_synth_t>)
 #ccall delete_fluid_synth , Ptr <fluid_synth_t> -> IO ()
