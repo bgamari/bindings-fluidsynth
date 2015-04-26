@@ -1,5 +1,5 @@
 name:                bindings-fluidsynth
-version:             0.1.1
+version:             0.2.0
 synopsis:            Haskell FFI bindings for fluidsynth software synthesizer
 description:         Haskell FFI bindings for fluidsynth software synthesizer
 homepage:            http://github.com/bgamari/bindings-fluidsynth

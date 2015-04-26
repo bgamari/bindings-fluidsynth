@@ -37,7 +37,7 @@ module Bindings.FluidSynth where
 #num FLUID_WARN
 #num FLUID_DBG
 type FluidLogFn = CInt -> CString -> Ptr () -> IO ()
-#ccall fluid_set_log_function , CInt -> Ptr FluidLogFn -> Ptr () -> IO (Ptr FluidLogFn)
+#ccall fluid_set_log_function , CInt -> FunPtr FluidLogFn -> Ptr () -> IO (FunPtr FluidLogFn)
 #ccall fluid_default_log_function , FluidLogFn
 
 -- * Error codes
