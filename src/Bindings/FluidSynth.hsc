@@ -21,6 +21,8 @@ module Bindings.FluidSynth where
 #ccall delete_fluid_audio_driver, Ptr <fluid_audio_driver_t> -> IO ()
 
 #ccall fluid_synth_sfload , Ptr <fluid_synth_t> -> CString -> CInt -> IO CInt
+#ccall fluid_synth_sfreload , Ptr <fluid_synth_t> -> CUInt -> IO CInt
+#ccall fluid_synth_sfunload , Ptr <fluid_synth_t> -> CInt -> CUInt -> IO CInt
 #ccall fluid_synth_noteon , Ptr <fluid_synth_t> -> CInt -> CInt -> CInt -> IO CInt
 #ccall fluid_synth_noteoff , Ptr <fluid_synth_t> -> CInt -> CInt -> IO CInt
 #ccall fluid_synth_pitch_bend , Ptr <fluid_synth_t> -> CInt -> CInt -> IO CInt
