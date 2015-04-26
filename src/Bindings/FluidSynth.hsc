@@ -8,6 +8,7 @@ module Bindings.FluidSynth where
 #opaque_t fluid_synth_t
 #opaque_t fluid_audio_driver_t
 
+-- * Settings
 #ccall new_fluid_settings , IO (Ptr <fluid_settings_t>)
 #ccall delete_fluid_settings , Ptr <fluid_settings_t> -> IO ()
 #ccall fluid_settings_setstr , Ptr <fluid_settings_t> -> CString -> CString -> IO CInt
@@ -20,15 +21,25 @@ module Bindings.FluidSynth where
 #ccall new_fluid_audio_driver , Ptr <fluid_settings_t> -> Ptr <fluid_synth_t> -> IO (Ptr <fluid_audio_driver_t>)
 #ccall delete_fluid_audio_driver, Ptr <fluid_audio_driver_t> -> IO ()
 
+-- * SoundFont loading
 #ccall fluid_synth_sfload , Ptr <fluid_synth_t> -> CString -> CInt -> IO CInt
 #ccall fluid_synth_sfreload , Ptr <fluid_synth_t> -> CUInt -> IO CInt
 #ccall fluid_synth_sfunload , Ptr <fluid_synth_t> -> CInt -> CUInt -> IO CInt
+
+-- * Playing notes
 #ccall fluid_synth_noteon , Ptr <fluid_synth_t> -> CInt -> CInt -> CInt -> IO CInt
 #ccall fluid_synth_noteoff , Ptr <fluid_synth_t> -> CInt -> CInt -> IO CInt
 #ccall fluid_synth_pitch_bend , Ptr <fluid_synth_t> -> CInt -> CInt -> IO CInt
 
-fluidFailed :: CInt
-fluidFailed = -1
+-- * Logging
+#num FLUID_PANIC
+#num FLUID_ERR
+#num FLUID_WARN
+#num FLUID_DBG
+type FluidLogFn = CInt -> CString -> Ptr () -> IO ()
+#ccall fluid_set_log_function , CInt -> Ptr FluidLogFn -> Ptr () -> IO (Ptr FluidLogFn)
+#ccall fluid_default_log_function , FluidLogFn
 
-fluidOk :: CInt
-fluidOk = 0
+-- * Error codes
+#num FLUID_FAILED
+#num FLUID_OK
